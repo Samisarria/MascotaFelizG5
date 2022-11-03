@@ -1,5 +1,5 @@
-import { authenticate } from '@loopback/authentication';
-import { service } from '@loopback/core';
+import {authenticate} from '@loopback/authentication';
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -9,122 +9,123 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  HttpErrors,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
-  HttpErrors,
 } from '@loopback/rest';
-import { Llaves } from '../config/llaves';
+import {Llaves} from '../config/llaves';
 import {CambioClave, Credenciales, RecuperacionClave, Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
-import { AutenticacionService } from '../services';
+import {AutenticacionService} from '../services';
 
 const fetch = require('node-fetch');
 
-@authenticate("Administrador")
+@authenticate('Administrador')
 export class UsuarioController {
   constructor(
     @repository(UsuarioRepository)
-    public usuarioRepository : UsuarioRepository,
+    public usuarioRepository: UsuarioRepository,
     @service(AutenticacionService)
-    public servicioAutenticacion : AutenticacionService
+    public servicioAutenticacion: AutenticacionService,
   ) {}
 
   @authenticate.skip()
   @post('/identificarUsuario', {
     responses: {
       '200': {
-      description: "Identificacion de usuarios"
-      }
-    }
+        description: 'Identificacion de usuarios',
+      },
+    },
   })
-
-  async identificarUsuario (
-    @requestBody() credenciales: Credenciales
-  ) {
-    let p = await this.servicioAutenticacion.IdentificarPersona(credenciales.Usuario, credenciales.Clave);
+  async identificarUsuario(@requestBody() credenciales: Credenciales) {
+    const p = await this.servicioAutenticacion.IdentificarPersona(
+      credenciales.Usuario,
+      credenciales.Clave,
+    );
     if (p) {
-      let token = this.servicioAutenticacion.GenerarTokenJWT(p);
+      const token = this.servicioAutenticacion.GenerarTokenJWT(p);
       return {
         datos: {
           id: p.Id,
           nombre: p.Nombres,
           apellidos: p.Apellidos,
-          correo: p.Correo
+          correo: p.Correo,
         },
-        tk: token
-      }
+        tk: token,
+      };
     } else {
-      throw new HttpErrors[401]("Datos de inicio de sesión no válidos");
+      throw new HttpErrors[401]('Datos de inicio de sesión no válidos');
     }
   }
 
   @authenticate.skip()
   @post('/recuperarClave')
   @response(200, {
-    description: "Recuperacion de contraseña"
+    description: 'Recuperacion de contraseña',
   })
-
-  async recuperarClave(
-    @requestBody() usuarioRecuperacion : RecuperacionClave,
-  ) {let p = await this.servicioAutenticacion.RecuperarClaveUsuario(usuarioRecuperacion.Usuario);
+  async recuperarClave(@requestBody() usuarioRecuperacion: RecuperacionClave) {
+    const p = await this.servicioAutenticacion.RecuperarClaveUsuario(
+      usuarioRecuperacion.Usuario,
+    );
     if (p) {
-      let clave = this.servicioAutenticacion.GenerarClave();
-      let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+      const clave = this.servicioAutenticacion.GenerarClave();
+      const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
       p.Clave = claveCifrada;
 
       await this.usuarioRepository.updateById(p.Id, p);
-      
+
       // Notificacion al usuario
-      let destino = p.Correo;
-      let asunto = 'Recuperación de contraseña mascota feliz'
-      let contenido = `Hola ${p.Nombres}, el restablecimiento de tu contraseña fue exitoso. Tu nueva contraseña es ${clave}`;
-      fetch(`${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`)
-      .then((data:any) => {
+      const destino = p.Correo;
+      const asunto = 'Recuperación de contraseña mascota feliz';
+      const contenido = `Hola ${p.Nombres}, el restablecimiento de tu contraseña fue exitoso. Tu nueva contraseña es ${clave}`;
+      fetch(
+        `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
+      ).then((data: unknown) => {
         console.log(data);
       });
 
       return p;
-
     } else {
-      throw new HttpErrors[401]("Datos no válidos");
+      throw new HttpErrors[401]('Datos no válidos');
     }
   }
 
   @post('/cambiarClave')
   @response(200, {
-    description: "Cambio de contraseña"
+    description: 'Cambio de contraseña',
   })
-
-  async cambiarClave(
-    @requestBody() cambioClave : CambioClave,
-  ) {let p = await this.servicioAutenticacion.CambiarClaveUsuario(cambioClave.Usuario, cambioClave.ClaveActual);
+  async cambiarClave(@requestBody() cambioClave: CambioClave) {
+    const p = await this.servicioAutenticacion.CambiarClaveUsuario(
+      cambioClave.Usuario,
+      cambioClave.ClaveActual,
+    );
     if (p) {
       //let clave = cambioClave.NuevaClave;
-      let claveCifrada = cambioClave.NuevaClave;
+      const claveCifrada = cambioClave.NuevaClave;
       p.Clave = claveCifrada;
 
       await this.usuarioRepository.updateById(p.Id, p);
-      
+
       // Notificacion al usuario
-      let destino = p.Correo;
-      let asunto = 'Cambio de contraseña mascota feliz'
-      let contenido = `Hola ${p.Nombres}, el cambio de tu contraseña fue exitoso.`;
-      fetch(`${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`)
-      .then((data:any) => {
+      const destino = p.Correo;
+      const asunto = 'Cambio de contraseña mascota feliz';
+      const contenido = `Hola ${p.Nombres}, el cambio de tu contraseña fue exitoso.`;
+      fetch(
+        `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
+      ).then((data: unknown) => {
         console.log(data);
       });
 
       return p;
-
     } else {
-      throw new HttpErrors[401]("Datos no válidos");
+      throw new HttpErrors[401]('Datos no válidos');
     }
   }
 
@@ -146,19 +147,19 @@ export class UsuarioController {
     })
     usuario: Omit<Usuario, 'Id'>,
   ): Promise<Usuario> {
-    
     // Generacion de la clave cifrada
-    let clave = this.servicioAutenticacion.GenerarClave();
-    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    const clave = this.servicioAutenticacion.GenerarClave();
+    const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
     usuario.Clave = claveCifrada;
-    let p = await this.usuarioRepository.create(usuario);
+    const p = await this.usuarioRepository.create(usuario);
 
     // Notificacion al usuario
-    let destino = usuario.Correo;
-    let asunto = 'Registro mascota feliz'
-    let contenido = `Hola ${usuario.Nombres}, bienvenido a Mascota Feliz. Tu nombre de usuario para ingresar a la plataforma es ${usuario.Correo} y la contraseña es ${clave}`;
-    fetch(`${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`)
-    .then((data:any) => {
+    const destino = usuario.Correo;
+    const asunto = 'Registro mascota feliz';
+    const contenido = `Hola ${usuario.Nombres}, bienvenido a Mascota Feliz. Tu nombre de usuario para ingresar a la plataforma es ${usuario.Correo} y la contraseña es ${clave}`;
+    fetch(
+      `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
+    ).then((data: unknown) => {
       console.log(data);
     });
 
@@ -170,9 +171,7 @@ export class UsuarioController {
     description: 'Usuario model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Usuario) where?: Where<Usuario>,
-  ): Promise<Count> {
+  async count(@param.where(Usuario) where?: Where<Usuario>): Promise<Count> {
     return this.usuarioRepository.count(where);
   }
 
@@ -224,7 +223,8 @@ export class UsuarioController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Usuario, {exclude: 'where'}) filter?: FilterExcludingWhere<Usuario>
+    @param.filter(Usuario, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Usuario>,
   ): Promise<Usuario> {
     return this.usuarioRepository.findById(id, filter);
   }
