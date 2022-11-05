@@ -1,24 +1,15 @@
-import { authenticate } from '@loopback/authentication';
-import {
-  repository,
-} from '@loopback/repository';
-import {
-  param,
-  get,
-  getModelSchemaRef,
-} from '@loopback/rest';
-import {
-  Mascota,
-  Plan,
-} from '../models';
+import {authenticate} from '@loopback/authentication';
+import {repository} from '@loopback/repository';
+import {get, getModelSchemaRef, param} from '@loopback/rest';
+import {Mascota, Plan} from '../models';
 import {MascotaRepository} from '../repositories';
 
-@authenticate("Administrador")
+@authenticate('Administrador')
 export class MascotaPlanController {
   constructor(
     @repository(MascotaRepository)
     public mascotaRepository: MascotaRepository,
-  ) { }
+  ) {}
 
   @get('/mascotas/{id}/plan', {
     responses: {
