@@ -4,7 +4,7 @@ import {get, getModelSchemaRef, param} from '@loopback/rest';
 import {Mascota, Plan} from '../models';
 import {MascotaRepository} from '../repositories';
 
-@authenticate('Administrador')
+@authenticate('Administrador', 'Asesor')
 export class MascotaPlanController {
   constructor(
     @repository(MascotaRepository)

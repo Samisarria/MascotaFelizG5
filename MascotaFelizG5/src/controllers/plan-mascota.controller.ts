@@ -1,4 +1,4 @@
-import { authenticate } from '@loopback/authentication';
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -16,17 +16,14 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Plan,
-  Mascota,
-} from '../models';
+import {Mascota, Plan} from '../models';
 import {PlanRepository} from '../repositories';
 
-@authenticate("Administrador")
+@authenticate('Administrador', 'Asesor')
 export class PlanMascotaController {
   constructor(
     @repository(PlanRepository) protected planRepository: PlanRepository,
-  ) { }
+  ) {}
 
   @get('/plans/{id}/mascotas', {
     responses: {
@@ -63,11 +60,12 @@ export class PlanMascotaController {
           schema: getModelSchemaRef(Mascota, {
             title: 'NewMascotaInPlan',
             exclude: ['Id'],
-            optional: ['planId']
+            optional: ['planId'],
           }),
         },
       },
-    }) mascota: Omit<Mascota, 'Id'>,
+    })
+    mascota: Omit<Mascota, 'Id'>,
   ): Promise<Mascota> {
     return this.planRepository.mascotas(id).create(mascota);
   }
@@ -90,7 +88,8 @@ export class PlanMascotaController {
       },
     })
     mascota: Partial<Mascota>,
-    @param.query.object('where', getWhereSchemaFor(Mascota)) where?: Where<Mascota>,
+    @param.query.object('where', getWhereSchemaFor(Mascota))
+    where?: Where<Mascota>,
   ): Promise<Count> {
     return this.planRepository.mascotas(id).patch(mascota, where);
   }
@@ -105,7 +104,8 @@ export class PlanMascotaController {
   })
   async delete(
     @param.path.string('id') id: string,
-    @param.query.object('where', getWhereSchemaFor(Mascota)) where?: Where<Mascota>,
+    @param.query.object('where', getWhereSchemaFor(Mascota))
+    where?: Where<Mascota>,
   ): Promise<Count> {
     return this.planRepository.mascotas(id).delete(where);
   }
