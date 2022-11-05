@@ -15,18 +15,21 @@ export class AutenticacionService {
     public usuarioRepository: UsuarioRepository,
   ) {}
 
+  /* Genera clave aleatoria para los usuarios */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   GenerarClave() {
     const clave = generador(8, false);
     return clave;
   }
 
+  /* Cifra la clave generada para los usuarios */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   CifrarClave(clave: string) {
     const claveCifrada = cryptoJS.MD5(clave).toString();
     return claveCifrada;
   }
 
+  /* Verifica que el usuario y la clave existan en la base de datos */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   IdentificarPersona(usuario: string, clave: string) {
     try {
@@ -44,6 +47,7 @@ export class AutenticacionService {
     }
   }
 
+  /* Valida que exista el usuario para recuperar la contraseña */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   RecuperarClaveUsuario(usuario: string) {
     try {
@@ -61,6 +65,7 @@ export class AutenticacionService {
     }
   }
 
+  /* Valida las credenciales para permitir el cambio de contraseña */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   CambiarClaveUsuario(usuario: string, claveActual: string) {
     try {
@@ -78,6 +83,7 @@ export class AutenticacionService {
     }
   }
 
+  /* Genera el token de sesion */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   GenerarTokenJWT(usuario: Usuario) {
     const token = jwt.sign(
@@ -95,6 +101,7 @@ export class AutenticacionService {
     return token;
   }
 
+  /* Valida el token de sesion */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   ValidarTokenJWT(token: string) {
     try {

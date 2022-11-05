@@ -36,6 +36,7 @@ export class UsuarioController {
     public servicioAutenticacion: AutenticacionService,
   ) {}
 
+  /* Servicio para la autenticacion del usuario*/
   @authenticate.skip()
   @post('/identificarUsuario', {
     responses: {
@@ -50,6 +51,7 @@ export class UsuarioController {
       credenciales.Clave,
     );
     if (p) {
+      /* Generacion del token */
       const token = this.servicioAutenticacion.GenerarTokenJWT(p);
       return {
         datos: {
@@ -65,6 +67,7 @@ export class UsuarioController {
     }
   }
 
+  /* Servicio para la recuperacion de la clave del usuario*/
   @authenticate.skip()
   @post('/recuperarClave')
   @response(200, {
@@ -75,13 +78,14 @@ export class UsuarioController {
       usuarioRecuperacion.Usuario,
     );
     if (p) {
+      /* Generacion de la clave cifrada */
       const clave = this.servicioAutenticacion.GenerarClave();
       const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
       p.Clave = claveCifrada;
 
       await this.usuarioRepository.updateById(p.Id, p);
 
-      // Notificacion al usuario
+      /* Envio del correo*/
       const destino = p.Correo;
       const asunto = 'Recuperación de contraseña mascota feliz';
       const contenido = `Hola ${p.Nombres}, el restablecimiento de tu contraseña fue exitoso. Tu nueva contraseña es ${clave}`;
@@ -99,6 +103,7 @@ export class UsuarioController {
     }
   }
 
+  /* Servicio para el cambio de contraseña de los usuarios*/
   @authenticate('Administrador', 'Cliente', 'Asesor')
   @post('/cambiarClave')
   @response(200, {
@@ -116,7 +121,7 @@ export class UsuarioController {
 
       await this.usuarioRepository.updateById(p.Id, p);
 
-      // Notificacion al usuario
+      /* Notificacion al usuario del cambio de clave */
       const destino = p.Correo;
       const asunto = 'Cambio de contraseña mascota feliz';
       const contenido = `Hola ${p.Nombres}, el cambio de tu contraseña fue exitoso.`;
@@ -134,6 +139,7 @@ export class UsuarioController {
     }
   }
 
+  /* Servicio para la creacion de usuarios */
   @post('/usuarios')
   @response(200, {
     description: 'Usuario model instance',
@@ -152,13 +158,13 @@ export class UsuarioController {
     })
     usuario: Omit<Usuario, 'Id'>,
   ): Promise<Usuario> {
-    // Generacion de la clave cifrada
+    /* Generacion de la clave cifrada */
     const clave = this.servicioAutenticacion.GenerarClave();
     const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
     usuario.Clave = claveCifrada;
     const p = await this.usuarioRepository.create(usuario);
 
-    // Notificacion al usuario
+    /* Notificacion al usuario del correo */
     const destino = usuario.Correo;
     const asunto = 'Registro mascota feliz';
     const contenido = `Hola ${usuario.Nombres}, bienvenido a Mascota Feliz. Tu nombre de usuario para ingresar a la plataforma es ${usuario.Correo} y la contraseña es ${clave}`;

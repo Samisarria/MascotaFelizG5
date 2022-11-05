@@ -48,6 +48,7 @@ export class MascotasApplicacion extends BootMixin(
       },
     };
 
+    /* Se registran las estrategias de autenticacion (Administrador, Asesor y Cliente)*/
     registerAuthenticationStrategy(this, EstrategiaAdministrador);
     registerAuthenticationStrategy(this, EstrategiaAsesor);
     registerAuthenticationStrategy(this, EstrategiaCliente);
