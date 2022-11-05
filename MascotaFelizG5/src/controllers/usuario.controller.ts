@@ -87,9 +87,11 @@ export class UsuarioController {
       const contenido = `Hola ${p.Nombres}, el restablecimiento de tu contraseña fue exitoso. Tu nueva contraseña es ${clave}`;
       fetch(
         `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
-      ).then((data: unknown) => {
-        console.log(data);
-      });
+      )
+        .then((data: unknown) => {
+          console.log(data);
+        })
+        .catch((err: unknown) => console.log(err));
 
       return p;
     } else {
@@ -97,6 +99,7 @@ export class UsuarioController {
     }
   }
 
+  @authenticate('Administrador', 'Cliente', 'Asesor')
   @post('/cambiarClave')
   @response(200, {
     description: 'Cambio de contraseña',
@@ -119,9 +122,11 @@ export class UsuarioController {
       const contenido = `Hola ${p.Nombres}, el cambio de tu contraseña fue exitoso.`;
       fetch(
         `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
-      ).then((data: unknown) => {
-        console.log(data);
-      });
+      )
+        .then((data: unknown) => {
+          console.log(data);
+        })
+        .catch((err: unknown) => console.log(err));
 
       return p;
     } else {
@@ -159,9 +164,11 @@ export class UsuarioController {
     const contenido = `Hola ${usuario.Nombres}, bienvenido a Mascota Feliz. Tu nombre de usuario para ingresar a la plataforma es ${usuario.Correo} y la contraseña es ${clave}`;
     fetch(
       `${Llaves.urlServicioNotificaciones}/email?destinatario=${destino}&asunto=${asunto}&mensaje=${contenido}`,
-    ).then((data: unknown) => {
-      console.log(data);
-    });
+    )
+      .then((data: unknown) => {
+        console.log(data);
+      })
+      .catch((err: unknown) => console.log(err));
 
     return p;
   }
