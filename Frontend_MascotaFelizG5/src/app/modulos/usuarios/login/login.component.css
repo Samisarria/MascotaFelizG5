@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box ;
-  background: url(/img/bgmascota.jpg) no-repeat center top;
+  background: url(../../../../shared/images/bgmascota.jpg) no-repeat center top;
   background-size: cover;
   font-family: sans-serif;
   height: 100vh;
