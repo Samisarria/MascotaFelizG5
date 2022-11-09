@@ -4,17 +4,18 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url("/images/fondo.jpeg") ;
+  background-image: url("../../../../shared/images/fondo.jpeg") ;
   background-size: cover;
   font-family: sans-serif;
   height: 100vh;
+  align-items: center;
+  display: flex;
 }
 .form-register{
   width: 400px;
   background: #dc5034;
   padding: 30px;
   margin:auto;
-  margin-top: 100px;
   border-radius: 8px;
   font-family: "calibri";
   color: rgb(0, 0, 0);

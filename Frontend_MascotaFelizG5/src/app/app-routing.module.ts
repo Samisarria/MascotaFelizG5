@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './modulos/usuarios/login/login.component';
-import { RegistroComponent } from './modulos/usuarios/registro/registro.component';
+import { AppComponent } from './app.component';
+import { PlantillaComponent } from './layout/plantilla/plantilla.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'registro', component: RegistroComponent}
+  { path: 'inicio', component: PlantillaComponent},
+  { path: '', pathMatch: 'full', redirectTo: '/inicio'},
+  { path: 'usuarios', loadChildren: () => import("./modulos/usuarios/usuarios.module").then(x => x.UsuariosModule) },
+  { path: '**', component: PlantillaComponent}
 ];
 
 @NgModule({
