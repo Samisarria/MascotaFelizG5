@@ -9,7 +9,7 @@ const services_1 = require("../services");
 let EstrategiaAdministrador = class EstrategiaAdministrador {
     constructor(autenticacionService) {
         this.autenticacionService = autenticacionService;
-        this.name = 'Administrador';
+        this.name = 'Administrador'; //nombre de la estrategia
     }
     async authenticate(request) {
         const token = (0, parse_bearer_token_1.default)(request);
