@@ -18,8 +18,6 @@ export class EditarComponent implements OnInit {
     'nombres': ['', [Validators.required]],
     'apellidos': ['', [Validators.required]],
     'identificacion': ['', [Validators.required]],
-    'ciudad': ['', [Validators.required]],
-    'departamento': ['', [Validators.required]],
     'rol': ['', [Validators.required]],
     'direccion': ['', [Validators.required]],
     'correo': ['', [Validators.required]],
@@ -62,8 +60,6 @@ export class EditarComponent implements OnInit {
     let nombres = this.validator.controls["nombres"].value;
     let apellidos = this.validator.controls["apellidos"].value;
     let identificacion = this.validator.controls["identificacion"].value;
-    let ciudad = this.validator.controls["ciudad"].value;
-    let departamento = this.validator.controls["departamento"].value;
     let rol = this.validator.controls["rol"].value;
     let direccion = this.validator.controls["direccion"].value;
     let correo = this.validator.controls["correo"].value;
@@ -74,8 +70,6 @@ export class EditarComponent implements OnInit {
     usuario.Nombres = nombres;
     usuario.Apellidos = apellidos;
     usuario.Identificacion = identificacion;
-    usuario.Ciudad = ciudad;
-    usuario.Departamento = departamento;
     usuario.Rol = rol;
     usuario.Direccion = direccion;
     usuario.Correo = correo;
