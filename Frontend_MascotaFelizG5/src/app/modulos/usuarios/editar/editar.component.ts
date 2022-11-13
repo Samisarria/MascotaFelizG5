@@ -12,6 +12,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 export class EditarComponent implements OnInit {
 
   id:string = '';
+  clave: string = '';
   validator: FormGroup = this.builder.group({
     'id': ['', [Validators.required]],
     'nombres': ['', [Validators.required]],
@@ -49,6 +50,9 @@ export class EditarComponent implements OnInit {
       this.validator.controls["direccion"].setValue(datos.Direccion);
       this.validator.controls["correo"].setValue(datos.Correo);
       this.validator.controls["telefono"].setValue(datos.Telefono);
+      if (datos.Clave) {
+        this.clave = datos.Clave;
+      }
     }, (error: ModeloUsuario) => {
 
     });
@@ -76,6 +80,7 @@ export class EditarComponent implements OnInit {
     usuario.Direccion = direccion;
     usuario.Correo = correo;
     usuario.Telefono = telefono;
+    usuario.Clave = this.clave;
 
     this.usuarioService.ActualizarUsuarios(usuario).subscribe((datos: ModeloUsuario) => {
       alert('Usuario actualizado')

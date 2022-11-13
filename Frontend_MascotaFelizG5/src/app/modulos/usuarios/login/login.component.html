@@ -10,14 +10,16 @@
         </div>
         <div class="col-md-6 align-self-center w-50">
           <img src="../shared/images/logo.jpg" class="avatar" alt="Avatar Image">
-            <form [formGroup]="validator" class="p-4" id="main-container" (ngSubmit)="IdentificarUsuario()">
+            <form [formGroup]="validator" class="needs-validation p-4" id="main-container" (ngSubmit)="IdentificarUsuario(contenido)">
               <div class="row container text-center mb-4 mt-4">
                   <h4>Inicio de sesión</h4>
               </div>
               <div class="row align-items-start">
                 <div class="col">
                   <div class="form-floating mb-3">
-                    <input formControlName="usuario" type="text" class="form-control" id="Nombres" placeholder="Nombre usuario" required>
+                    <input formControlName="usuario" type="text" class="form-control"
+                    [ngClass]="(validator.controls['usuario'].touched || validator.controls['usuario'].dirty) && validator.controls['usuario'].errors ? 'is-invalid' : '' "
+                    id="Nombres" placeholder="Nombre usuario" required>
                     <label for="Nombres">Nombre de usuario</label>
                     <div class="invalid-feedback">
                       Este campo es requerido
@@ -28,8 +30,10 @@
               <div class="row align-items-start">
                 <div class="col">
                   <div class="form-floating mb-3">
-                    <input formControlName="clave" type="password" class="form-control" id="Identificacion" placeholder="1234567890" required>
-                    <label for="Identificacion">Contraseña</label>
+                    <input formControlName="clave" type="password" class="form-control"
+                    [ngClass]="(validator.controls['clave'].touched || validator.controls['clave'].dirty) && validator.controls['clave'].errors ? 'is-invalid' : '' "
+                    id="Clave" placeholder="1234567890" required>
+                    <label for="Clave">Contraseña</label>
                     <div class="invalid-feedback">
                       Este campo es requerido
                     </div>
@@ -38,7 +42,7 @@
               </div>
               <div class="row align-items-start mt-3">
                   <div class="align-items-center container w-100 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary p-3 w-75">Ingresar</button>
+                      <button [disabled]="!validator.valid" type="submit" class="btn btn-primary p-3 w-75">Ingresar</button>
                   </div>
               </div>
               <div class="row align-items-start mt-3">
@@ -58,24 +62,19 @@
     </div>
   </div>
 
-
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Usuario creado</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        El usuario ha sido creado correctamente. Los datos de acceso han sido enviados al correo registrado.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
+  <ng-template #contenido let-modal>
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Error de inicio de sesión</h1>
+      <button type="button" class="close" data-bs-dismiss="modal" aria-label="close" (click)="CerrarModal()"></button>
     </div>
-  </div>
-  </div>
+    <div class="modal-body">
+      El usuario o la contraseña no son válidos.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="CerrarModal()" data-bs-dismiss="modal">Cerrar</button>
+    </div>
+  </ng-template>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="scripts.js"></script>

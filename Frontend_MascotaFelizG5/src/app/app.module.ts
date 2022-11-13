@@ -8,6 +8,7 @@ import { PlantillaComponent } from './layout/plantilla/plantilla.component';
 import { BarraNavegacionComponent } from './layout/barra-navegacion/barra-navegacion.component';
 import { PiePaginaComponent } from './layout/pie-pagina/pie-pagina.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
