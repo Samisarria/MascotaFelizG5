@@ -431,6 +431,6 @@ footer span {
 	height: 200px;
 }
 
-.container {
-	width: 1270px !important;
+#Navigation {
+	width: 100% !important;
 }

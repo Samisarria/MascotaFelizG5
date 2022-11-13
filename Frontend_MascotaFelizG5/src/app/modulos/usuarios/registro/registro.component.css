@@ -1,65 +1,45 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-}
 body {
-  background-image: url("../../../../shared/images/fondo.jpeg") ;
+  background-image: url('../../../../assets/fondo.jpeg');
   background-size: cover;
-  font-family: sans-serif;
   height: 100vh;
-  align-items: center;
-  display: flex;
-}
-.form-register{
-  width: 400px;
-  background: #dc5034;
-  padding: 30px;
-  margin:auto;
-  border-radius: 8px;
-  font-family: "calibri";
-  color: rgb(0, 0, 0);
-  box-shadow: 7px 14px 38px #000;
+  display: grid;
+  place-items: center;
+  margin-top: 100px;
+  }
 
-}
+  #main-container {
+      border-radius: var(--border-radius);
+      background: rgba( 255, 255, 255, 0.3 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 4px );
+      -webkit-backdrop-filter: blur( 4px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.4 );
+  }
 
-.form-register h4 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color:rgb(255, 253, 253);
-  text-align: center;
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 230px);
+    z-index: 1;
+    left: calc(50% - 40px);
+  }
 
-}
+  button {
+    background-color: rgb(220, 80, 52);
+    font-weight: 700;
+  }
 
-.controls {
-  width: 100%;
-  background: #f2f4f7;
-  padding: 10px;
-  border-radius:4px;
-  margin-bottom:16px;
-  border:1px solid #0e0802;
-  font-family: "calibri";
-  font-size: 18px;
+  button:active:hover {
+    background-color: rgb(242, 175, 0);
+    color: rgb(94, 94, 94);
+    font-weight: 700;
+  }
 
-}
-.form-register p {
-  height: 40px;
-  text-align: center;
-  font-size:18px;
-  line-height: 40px;
-
-}
-.form-register a:hover{
-  color:rgb(253, 247, 247);
-  text-decoration: underline;
-
-}
-.form-register .botons{
-  width: 100%;
-  background: #202020;
-  border:none;
-  padding: 12px;
-  color:rgb(248, 246, 246);
-  margin: 16px;
-  text-align: center;
-}
+  button:hover {
+    background-color: rgb(242, 175, 0);
+    color: rgb(94, 94, 94);
+    font-weight: 700;
+  }
