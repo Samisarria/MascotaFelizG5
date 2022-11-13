@@ -7,6 +7,7 @@ import { ConsultarComponent } from './consultar/consultar.component';
 import { EditarComponent } from './editar/editar.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
 import { LoginComponent } from './login/login.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
@@ -16,6 +17,9 @@ const routes: Routes = [
   }, {
     path: 'registro',
     component: RegistroComponent
+  }, {
+    path: 'recuperarClave',
+    component: RecuperarClaveComponent
   }, {
     path: 'cerrarsesion',
     component: CerrarsesionComponent,
