@@ -1,0 +1,35 @@
+<head>
+  <style>
+    table {
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Nombre
+      </th>
+      <th>
+        Apellido
+      </th>
+      <th>
+        Editar
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listadoProspectos">
+      <td>
+        {{p.Nombres}}
+      </td>
+      <td>
+        {{p.Apellidos}}
+      </td>
+      <td>
+        <a routerLink="/prospectos/editar/{{p.Id}}">Editar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

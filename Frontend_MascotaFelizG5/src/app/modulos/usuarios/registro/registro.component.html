@@ -1,22 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" href="Estilos.css">-->
-    <title>Registro</title>
+
 </head>
 <body>
-    <section class="form-register">
-        <h4>Registro</h4>
-        <input class="controls" type="text" name="Nombres"id="Nombres"placeholder="Ingrese su Nombre">
-        <input class="controls" type="text" name="Apellidos"id="Apellidos"placeholder="Ingrese su Apellido">
-        <input class="controls" type="email" name="Correo"id="Correo"placeholder="Ingrese su Correo">
-        <input class="controls" type="password" name="Contraseña"id="Contraseña"placeholder="Ingrese su Contraseña">
-        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
-        <input class="botons" type="submit" value="Registrar">
-        <p><a href="/usuarios/login">¿Ya tengo Cuenta?</a></p>
-    </section>
+  <div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+        </div>
+        <div class="col-md-6 align-self-center w-50">
+          <img src="../shared/images/logo.jpg" class="avatar" alt="Avatar Image">
+            <form class="needs-validation p-4" id="main-container" novalidate>
+              <div class="row container text-center mb-4 mt-4">
+                  <h4>Registro Mascota Feliz</h4>
+              </div>
+              <div class="row align-items-start">
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Nombres" placeholder="Guillermo" required>
+                    <label for="Nombres">Nombres</label>
+                    <div class="invalid-feedback">
+                      Este campo es requerido
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Apellidos" placeholder="Fonseca" required>
+                    <label for="Apellidos">Apellidos</label>
+                    <div class="invalid-feedback">
+                      Este campo es requerido
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-start">
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Identificacion" placeholder="1234567890" required>
+                    <label for="Identificacion">Identificación</label>
+                    <div class="invalid-feedback">
+                      Este campo es requerido
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Telefono" placeholder="987654321" required>
+                    <label for="Telefono">Teléfono</label>
+                    <div class="invalid-feedback">
+                      Por favor ingrese un número de teléfono
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="Direccion" placeholder="Calle 123" required>
+                <label for="Direccion">Dirección</label>
+                <div class="invalid-feedback">
+                  Por favor ingrese una dirección
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="Email" placeholder="name@example.com" required>
+                <label for="Email">Correo electrónico</label>
+                <div class="invalid-feedback">
+                  Por favor ingrese un correo electrónico
+                </div>
+              </div>
+              <p>Estoy de acuerdo con los <a href="#">Términos y condiciones</a></p>
+              <div class="row align-items-start mt-3">
+                <div class="align-items-center container w-100 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary p-3 w-75">Registrarse</button>
+                </div>
+            </div>
+            <div class="row align-items-start mt-3">
+              <div class="align-items-center container w-100 d-flex justify-content-center">
+                  <a routerLink="/usuarios/login">¿Ya tiene cuenta?</a>
+              </div>
+          </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Usuario creado</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        El usuario ha sido creado correctamente. Los datos de acceso han sido enviados al correo registrado.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="scripts.js"></script>
+
 </body>
-</html>

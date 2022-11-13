@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container d-flex justify-content-start w-100 mw-100">
+    <div class="navbar-header align-items-center">
+      <img src="../../../shared/images/logo.jpg" width="60">
+      <a href="#" class="navbar-brand">Mascota Feliz</a>
+    </div>
+    <div class="collapse navbar-collapse" style="flex: auto;" id="navbarNavDropdown">
+      <ul class="navbar-nav align-items-center d-flex flex-row">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">NOSOTROS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">PLANES Y PRODUCTOS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">CONTÁCTANOS</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../../../shared/images/usuario.png" alt="Bootstrap" width="30" height="24">
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="!seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/login">Iniciar sesión</a></li>
+            <li *ngIf="!seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/registro">Registrarse</a></li>
+            <li *ngIf="seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/cerrarsesion">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
