@@ -22,9 +22,9 @@ body {
     height: 80px;
     border-radius: 50%;
     position: absolute;
-    top: calc(50% - 160px);
+    top: calc(50% - 180px);
     z-index: 1;
-    left: calc(50% - 40px);
+    left: calc(50% - 50px);
   }
 
   button {

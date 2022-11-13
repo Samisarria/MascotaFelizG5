@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
 import * as cryptoJS from "crypto-js";
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-login',
@@ -17,15 +18,18 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private builder: FormBuilder,
-    private servicioSeguridad: SeguridadService, private router: Router) {
+    private servicioSeguridad: SeguridadService,
+    private router: Router,
+    public modal: NgbModal) {
 
   }
 
   ngOnInit(): void {
+    this.validator.controls["id"].errors;
   }
 
 
-  IdentificarUsuario(){
+  IdentificarUsuario(contenidoModal: any){
     let usuario = this.validator.controls["usuario"].value;
     let clave = this.validator.controls["clave"].value;
     let claveCifrada = cryptoJS.MD5(clave).toString();
@@ -34,7 +38,14 @@ export class LoginComponent implements OnInit {
       this.servicioSeguridad.AlmacenarSesion(datos);
       this.router.navigate(["/inicio"]);
     }, (error: any) => {
+      this.validator.controls['usuario'].setValue('');
+      this.validator.controls['clave'].setValue('');
+      this.modal.open(contenidoModal, {centered: true});
     });
+  }
+
+  CerrarModal() {
+    this.modal.dismissAll();
   }
 
 }
