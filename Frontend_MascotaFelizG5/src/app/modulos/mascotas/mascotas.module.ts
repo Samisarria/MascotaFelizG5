@@ -6,6 +6,7 @@ import { AgregarComponent } from './agregar/agregar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ConsultarComponent } from './consultar/consultar.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
+import { RegitrarMascotaComponent } from './regitrar-mascota/regitrar-mascota.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EliminarComponent } from './eliminar/eliminar.component';
     AgregarComponent,
     EditarComponent,
     ConsultarComponent,
-    EliminarComponent
+    EliminarComponent,
+    RegitrarMascotaComponent
   ],
   imports: [
     CommonModule,

@@ -9,13 +9,15 @@ import { BarraNavegacionComponent } from './layout/barra-navegacion/barra-navega
 import { PiePaginaComponent } from './layout/pie-pagina/pie-pagina.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MascotaComponent } from './plantilla/mascota/mascota.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlantillaComponent,
     BarraNavegacionComponent,
-    PiePaginaComponent
+    PiePaginaComponent,
+    MascotaComponent
   ],
   imports: [
     BrowserModule,

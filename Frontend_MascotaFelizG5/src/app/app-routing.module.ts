@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PlantillaComponent } from './layout/plantilla/plantilla.component';
+import { MascotaComponent } from './plantilla/mascota/mascota.component';
 
 const routes: Routes = [
   { path: 'inicio', component: PlantillaComponent},
@@ -9,7 +10,10 @@ const routes: Routes = [
   { path: 'usuarios', loadChildren: () => import("./modulos/usuarios/usuarios.module").then(x => x.UsuariosModule) },
   { path: 'prospectos', loadChildren: () => import("./modulos/prospectos/prospectos.module").then(x => x.ProspectosModule) },
   { path: 'planes', loadChildren: () => import("./modulos/planes/planes.module").then(x => x.PlanesModule) },
+  { path: 'mascota', loadChildren: ()=> import("./modulos/mascotas/mascotas.module").then(x => x.MascotasModule)},
   { path: '**', component: PlantillaComponent}
+  
+  
 ];
 
 @NgModule({
