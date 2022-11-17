@@ -6,6 +6,7 @@ import { AgregarComponent } from './agregar/agregar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ConsultarComponent } from './consultar/consultar.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { EliminarComponent } from './eliminar/eliminar.component';
   ],
   imports: [
     CommonModule,
-    ProductoserviciosRoutingModule
+    ProductoserviciosRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductoserviciosModule { }

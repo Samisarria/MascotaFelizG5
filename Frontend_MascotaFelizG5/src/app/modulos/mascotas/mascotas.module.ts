@@ -6,6 +6,9 @@ import { AgregarComponent } from './agregar/agregar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ConsultarComponent } from './consultar/consultar.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
+import { AprobarSolicitudComponent } from './aprobar-solicitud/aprobar-solicitud.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConsultarSolicitudesComponent } from './consultar-solicitudes/consultar-solicitudes.component';
 
 
 @NgModule({
@@ -13,11 +16,15 @@ import { EliminarComponent } from './eliminar/eliminar.component';
     AgregarComponent,
     EditarComponent,
     ConsultarComponent,
-    EliminarComponent
+    EliminarComponent,
+    AprobarSolicitudComponent,
+    ConsultarSolicitudesComponent
   ],
   imports: [
     CommonModule,
-    MascotasRoutingModule
+    MascotasRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MascotasModule { }

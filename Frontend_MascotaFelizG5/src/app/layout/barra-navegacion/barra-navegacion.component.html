@@ -4,21 +4,36 @@
       <img src="../../../shared/images/logo.jpg" width="60">
       <a href="#" class="navbar-brand">Mascota Feliz</a>
     </div>
-    <div class="collapse navbar-collapse" style="flex: auto;" id="navbarNavDropdown">
-      <ul class="navbar-nav align-items-center d-flex flex-row">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+    <div class="collapse navbar-collapse" style="flex: auto; display: flex !important; justify-content: flex-end;" id="navbarNavDropdown">
+      <ul class="navbar-nav align-items-center d-flex flex-row" style="margin-right: 50px;">
+        <li *ngIf="!seInicioSesion" class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">INICIO</a>
         </li>
         <li *ngIf="!seInicioSesion" class="nav-item">
           <a class="nav-link" href="#">NOSOTROS</a>
         </li>
         <li *ngIf="seInicioSesion" class="nav-item">
+          <a class="nav-link" routerLink="/productos-servicios/consultar">PRODUCTOS Y SERVICIOS</a>
+        </li>
+        <li *ngIf="seInicioSesion && rolUsuario === 'Administrador'" class="nav-item">
+          <a class="nav-link" routerLink="/sucursales/consultar">SUCURSALES</a>
+        </li>
+        <li *ngIf="seInicioSesion && rolUsuario === 'Administrador'" class="nav-item">
+          <a class="nav-link" routerLink="/planes/consultar">PLANES</a>
+        </li>
+        <li *ngIf="seInicioSesion && rolUsuario === 'Administrador'" class="nav-item">
           <a class="nav-link" routerLink="/usuarios/consultar">USUARIOS</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="seInicioSesion && rolUsuario !== 'Cliente'" class="nav-item">
+          <a class="nav-link" routerLink="/mascotas/consultar-solicitudes">SOLICITUDES</a>
+        </li>
+        <li *ngIf="seInicioSesion" class="nav-item">
+          <a class="nav-link" routerLink="/mascotas/consultar">MIS MASCOTAS</a>
+        </li>
+        <li *ngIf="!seInicioSesion" class="nav-item">
           <a class="nav-link" href="#">PLANES Y PRODUCTOS</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!seInicioSesion" class="nav-item">
           <a class="nav-link" href="#">CONTÁCTANOS</a>
         </li>
         <li class="nav-item dropdown">
@@ -28,6 +43,7 @@
           <ul class="dropdown-menu">
             <li *ngIf="!seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/login">Iniciar sesión</a></li>
             <li *ngIf="!seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/registro">Registrarse</a></li>
+            <li *ngIf="seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/perfil">Perfil</a></li>
             <li *ngIf="seInicioSesion"><a class="dropdown-item" routerLink="/usuarios/cerrarsesion">Cerrar sesión</a></li>
           </ul>
         </li>

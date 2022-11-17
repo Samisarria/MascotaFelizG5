@@ -11,6 +11,7 @@ import { EditarComponent } from './editar/editar.component';
 import { ConsultarComponent } from './consultar/consultar.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
     EditarComponent,
     ConsultarComponent,
     EliminarComponent,
-    RecuperarClaveComponent
+    RecuperarClaveComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,

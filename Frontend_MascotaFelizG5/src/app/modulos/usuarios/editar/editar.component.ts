@@ -42,8 +42,6 @@ export class EditarComponent implements OnInit {
       this.validator.controls["nombres"].setValue(datos.Nombres);
       this.validator.controls["apellidos"].setValue(datos.Apellidos);
       this.validator.controls["identificacion"].setValue(datos.Identificacion);
-      this.validator.controls["ciudad"].setValue(datos.Ciudad);
-      this.validator.controls["departamento"].setValue(datos.Departamento);
       this.validator.controls["rol"].setValue(datos.Rol);
       this.validator.controls["direccion"].setValue(datos.Direccion);
       this.validator.controls["correo"].setValue(datos.Correo);
