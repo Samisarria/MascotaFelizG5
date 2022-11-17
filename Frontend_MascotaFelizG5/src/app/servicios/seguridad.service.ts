@@ -77,6 +77,16 @@ export class SeguridadService {
     return datosString;
   }
 
+  ObtenerIdUsuarioSesion() {
+    let datosString = localStorage.getItem("datosSesion");
+    if (datosString) {
+      let datos = JSON.parse(datosString);
+      return datos.datos.id;
+    } else {
+      return '';
+    }
+  }
+
   ObtenerToken() {
     let datosString = localStorage.getItem("datosSesion");
     if (datosString) {

@@ -248,7 +248,7 @@ http://www.templatemo.com/free-website-templates/
       <div class="col-md-12 col-sm-12">
         <h2>Contáctanos</h2>
       </div>
-      <form [formGroup]="validator" (ngSubmit)="GuardarProspecto()">
+      <form [formGroup]="validator" (ngSubmit)="GuardarProspecto(contenido)">
         <div class="col-md-1 col-sm-1"></div>
         <div class="col-md-10 col-sm-10">
           <div class="col-md-6 col-sm-6">
@@ -297,6 +297,21 @@ http://www.templatemo.com/free-website-templates/
     <div class="col-md-1 col-sm-1"></div>
   </div>
 </div>
+
+  <!-- Modal -->
+  <ng-template #contenido let-modal>
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Registro formulario contacto</h1>
+      <button type="button" class="close" data-bs-dismiss="modal" aria-label="close" (click)="CerrarModal()"></button>
+    </div>
+    <div class="modal-body">
+      Sus datos se han registrado correctamente. Uno de nuestros asesores se estara comunicando contigo en el menor tiempo posible.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="CerrarModal()" data-bs-dismiss="modal">Cerrar</button>
+    </div>
+  </ng-template>
+
 
 <!-- scrolltop section -->
 <a href="#top" class="go-top"><i class="fa fa-angle-up"></i></a>

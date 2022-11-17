@@ -55,13 +55,13 @@ export class EditarComponent implements OnInit {
     plan.Id = this.id;
     plan.Nombre = nombre;
     plan.Descripcion = descripcion;
-    plan.Precio = precio;
+    plan.Precio = Number.parseInt(precio);
 
     this.planesService.ActualizarPlanes(plan).subscribe((datos: ModeloPlan) => {
       this.modal.open(contenidoModal, {centered: true});
       this.router.navigate(["/planes/consultar"])
     }, (error: any) => {
-      alert('Error')
+
     });
   }
 
