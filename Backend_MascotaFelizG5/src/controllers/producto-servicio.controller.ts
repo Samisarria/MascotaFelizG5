@@ -63,6 +63,7 @@ export class ProductoServicioController {
     return this.productoServicioRepository.count(where);
   }
 
+  @authenticate('Administrador', 'Asesor', 'Cliente')
   @get('/productos-servicios')
   @response(200, {
     description: 'Array of ProductoServicio model instances',

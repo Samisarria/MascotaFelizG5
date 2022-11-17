@@ -56,9 +56,10 @@ export class UsuarioController {
       return {
         datos: {
           id: p.Id,
-          nombre: p.Nombres,
+          nombres: p.Nombres,
           apellidos: p.Apellidos,
           correo: p.Correo,
+          rol: p.Rol
         },
         tk: token,
       };
@@ -140,6 +141,7 @@ export class UsuarioController {
   }
 
   /* Servicio para la creacion de usuarios */
+  @authenticate.skip()
   @post('/usuarios')
   @response(200, {
     description: 'Usuario model instance',
@@ -178,6 +180,7 @@ export class UsuarioController {
 
     return p;
   }
+
 
   @get('/usuarios/count')
   @response(200, {
@@ -225,6 +228,7 @@ export class UsuarioController {
     return this.usuarioRepository.updateAll(usuario, where);
   }
 
+  @authenticate('Administrador', 'Asesor', 'Cliente')
   @get('/usuarios/{id}')
   @response(200, {
     description: 'Usuario model instance',
