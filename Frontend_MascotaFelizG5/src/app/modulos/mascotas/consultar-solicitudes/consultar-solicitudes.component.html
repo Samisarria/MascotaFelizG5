@@ -37,8 +37,12 @@
           <td>
             {{ObtenerNombrePlan(p.planId)}}
           </td>
-          <td>
+          <td *ngIf="rolUsuario === 'Asesor'">
             <a routerLink="/mascotas/aprobar-solicitudes/{{p.Id}}">Ver solicitud</a>
+          </td>
+          <td *ngIf="rolUsuario === 'Administrador'">
+            <a routerLink="/mascotas/aprobar-solicitudes/{{p.Id}}">Ver solicitud</a> |
+            <a routerLink="/mascotas/eliminar/{{p.Id}}">Eliminar</a>
           </td>
         </tr>
         <tr>
