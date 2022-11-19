@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModeloProspecto } from 'src/app/modelos/prospecto.modelo';
 import { ProspectoService } from 'src/app/servicios/prospecto.service';
 
@@ -26,12 +27,12 @@ export class PlantillaComponent implements OnInit {
   })
 
 
-  constructor(private builder: FormBuilder, private prospectoService: ProspectoService, private router: Router) { }
+  constructor(private builder: FormBuilder, private prospectoService: ProspectoService, private router: Router, public modal: NgbModal) { }
 
   ngOnInit(): void {
   }
 
-  GuardarProspecto() {
+  GuardarProspecto(contenidoModal: any) {
     let nombres = this.validator.controls["nombres"].value;
     let apellidos = this.validator.controls["apellidos"].value;
     let ciudad = this.validator.controls["ciudad"].value;
@@ -52,11 +53,14 @@ export class PlantillaComponent implements OnInit {
     prospecto.Comentario = comentario;
 
     this.prospectoService.CrearProspecto(prospecto).subscribe((datos: ModeloProspecto) => {
-      alert('Prospecto almacenado')
+      this.modal.open(contenidoModal, {centered: true});
       this.router.navigate(["/inicio"])
     }, (error: any) => {
       alert('Error')
     });
+  }
 
+  CerrarModal() {
+    this.modal.dismissAll();
   }
 }
