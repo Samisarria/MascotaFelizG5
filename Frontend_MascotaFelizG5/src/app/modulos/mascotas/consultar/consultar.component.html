@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1fd1c4a6ac19b5757a2d824173a741ff19eb6334
 <head>
 
 </head>
 <body>
 
   <div class="container">
+<<<<<<< HEAD
     <h3 class="text-center p-4">Listado de Mascotas</h3>
     <table class="table table-striped table-hover">
       <thead>
@@ -13,6 +17,16 @@
           <th scope="col">Raza</th>
           <th scope="col">Color</th>
           <th scope="col">Estado</th>
+=======
+    <h3 class="text-center p-4">Mis mascotas</h3>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre mascota</th>
+          <th scope="col">Raza</th>
+          <th scope="col">Color</th>
+          <th scope="col">Estado afiliación</th>
+>>>>>>> 1fd1c4a6ac19b5757a2d824173a741ff19eb6334
           <th scope="col">Sexo</th>
           <th scope="col">Plan</th>
           <th scope="col">Acciones</th>
@@ -36,11 +50,19 @@
             {{p.Sexo}}
           </td>
           <td>
+<<<<<<< HEAD
             {{p.Plan}}
           </td>
           <td>
             <a routerLink="/mascota/editar/{{p.Id}}">Editar</a> |
             <a routerLink="/mascota/eliminar/{{p.Id}}">Eliminar</a>
+=======
+            {{ObtenerNombrePlan(p.planId)}}
+          </td>
+          <td>
+            <a routerLink="/mascotas/editar/{{p.Id}}">Editar</a> |
+            <a routerLink="/mascotas/eliminar/{{p.Id}}">Eliminar</a>
+>>>>>>> 1fd1c4a6ac19b5757a2d824173a741ff19eb6334
           </td>
         </tr>
         <tr>

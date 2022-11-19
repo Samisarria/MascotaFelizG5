@@ -1,0 +1,160 @@
+
+  <div class="container py-5">
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4 main-container-mascota">
+          <h4 class="text-center p-2">Mi perfil</h4>
+          <div class="card-body text-center">
+            <img src="../../../../shared/images/profile.png" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{validator.controls["nombres"].value}}</h5>
+            <h5 class="my-3">{{validator.controls["apellidos"].value}}</h5>
+            <p class="text-muted mb-1">{{validator.controls["rol"].value}}</p>
+            <div class="d-flex justify-content-center mb-2 mt-4">
+              <button type="button" class="btn btn-primary" id="botonGuardar">Cambiar imagen</button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 mb-lg-0">
+
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4 main-container-mascota">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombres</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["nombres"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Apellidos</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["apellidos"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Identificación</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["identificacion"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Dirección</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["direccion"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Teléfono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["telefono"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Correo</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{validator.controls["correo"].value}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center mb-2 mt-4">
+              <button type="button" class="btn btn-primary" id="botonGuardar">Actualizar información</button>
+            </div>
+          </div>
+        </div>
+        <h4 *ngIf="listaMascotas.length > 0" class="text-center p-2">Mis mascotas</h4>
+
+        <div class="row">
+          <div *ngFor="let mascota of listaMascotas" class="col-md-6">
+            <div class="card mb-4 mt-3 mb-md-0 main-container-mascota">
+              <div  class="card-body text-center">
+                <img src="../../../../shared/images/mascota.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <h5 class="my-3">{{mascota.Nombre}}</h5>
+                <h5 class="my-3">{{mascota.Especie}}</h5>
+                <p class="text-muted mb-1">{{ObtenerNombrePlan(mascota.planId)}}</p>
+                <div class="d-flex justify-content-center mb-2 mt-4">
+                  <button (click)="AbrirModalDatos(contenido)" class="btn btn-primary" id="botonGuardar">Datos mascota</button>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #contenido let-modal>
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Datos mascota</h1>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="close" (click)="CerrarModal()"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Nombre mascota</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{mascota.Nombre}}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Especie</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{mascota.Especie}}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Color</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{mascota.Color}}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Sexo</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{mascota.Sexo}}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Plan mascota</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{ObtenerNombrePlan(mascota.planId)}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="CerrarModal()" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

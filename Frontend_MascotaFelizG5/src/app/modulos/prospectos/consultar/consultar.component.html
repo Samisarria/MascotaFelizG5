@@ -1,35 +1,45 @@
 <head>
-  <style>
-    table {
-      margin-top: 100px;
-    }
-  </style>
+
 </head>
-<table>
-  <thead>
-    <tr>
-      <th>
-        Nombre
-      </th>
-      <th>
-        Apellido
-      </th>
-      <th>
-        Editar
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of listadoProspectos">
-      <td>
-        {{p.Nombres}}
-      </td>
-      <td>
-        {{p.Apellidos}}
-      </td>
-      <td>
-        <a routerLink="/prospectos/editar/{{p.Id}}">Editar</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<body>
+
+  <div class="container">
+    <h3 class="text-center p-4">Prospectos Mascota Feliz</h3>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Ciudad</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of listadoProspectos">
+          <td>
+            {{p.Nombres}}
+          </td>
+          <td>
+            {{p.Apellidos}}
+          </td>
+          <td>
+            {{p.Ciudad}}
+          </td>
+          <td>
+            {{p.Correo}}
+          </td>
+          <td>
+            {{p.Telefono}}
+          </td>
+          <td>
+            <a routerLink="/prospectos/editar/{{p.Id}}">Revisar solicitud</a>
+          </td>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>

@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validator.controls["id"].errors;
   }
 
 
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.servicioSeguridad.IdentificarUsuario(usuario, claveCifrada).subscribe((datos: any) => {
       this.servicioSeguridad.AlmacenarSesion(datos);
-      this.router.navigate(["/inicio"]);
+      this.router.navigate(["/productos-servicios/consultar"]);
     }, (error: any) => {
       this.validator.controls['usuario'].setValue('');
       this.validator.controls['clave'].setValue('');

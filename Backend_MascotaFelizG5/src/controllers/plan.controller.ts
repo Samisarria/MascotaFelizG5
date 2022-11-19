@@ -58,6 +58,7 @@ export class PlanController {
     return this.planRepository.count(where);
   }
 
+  @authenticate('Administrador', 'Asesor', 'Cliente')
   @get('/planes')
   @response(200, {
     description: 'Array of Plan model instances',

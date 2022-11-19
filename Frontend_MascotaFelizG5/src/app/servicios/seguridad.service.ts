@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ModeloIdentificar } from '../modelos/Identificar.modelo';
+import { RecuperarClaveModel } from '../modelos/recuperarClave.model';
+import { RecuperarClaveComponent } from '../modulos/usuarios/recuperar-clave/recuperar-clave.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,14 @@ export class SeguridadService {
     }, {
       headers: new HttpHeaders({
 
+      })
+    })
+  }
+
+  RecuperarClave(usuario: RecuperarClaveModel): Observable<RecuperarClaveModel> {
+    return this.http.post<RecuperarClaveModel>('http://localhost:3000/recuperarClave', usuario, {
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
       })
     })
   }
@@ -65,6 +75,16 @@ export class SeguridadService {
   SeHaIniciadoSesion() {
     let datosString = localStorage.getItem("datosSesion");
     return datosString;
+  }
+
+  ObtenerIdUsuarioSesion() {
+    let datosString = localStorage.getItem("datosSesion");
+    if (datosString) {
+      let datos = JSON.parse(datosString);
+      return datos.datos.id;
+    } else {
+      return '';
+    }
   }
 
   ObtenerToken() {
